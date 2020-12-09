@@ -13,6 +13,11 @@ import colors from '../config/colors'
 function Profile(props) {
 
     const [selectedValue, setSelectedValue] = useState("option");
+    const [selectedValue2, setSelectedValue2] = useState("option");
+    const [selectedValue3, setSelectedValue3] = useState("option");
+    const [selectedValue4, setSelectedValue4] = useState("option");
+    const [selectedValue5, setSelectedValue5] = useState("option");
+
     const [selectedImage, setImage] = useState(null)
 
 
@@ -86,7 +91,7 @@ function Profile(props) {
                             // backgroundColor: colors.grey
                         }}>
                             <Picker
-                                selectedValue={selectedValue}
+                                selectedValue={selectedValue2}
                                 mode="dropdown"
                                 style={{
                                     transform: [
@@ -94,7 +99,7 @@ function Profile(props) {
                                         { scaleY: 1.4 },
                                     ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
                                 }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValue2(itemValue)}
                             >
                                 <Picker.Item label="option" value="option" />
                                 <Picker.Item label="option2" value="option2" />
@@ -111,7 +116,7 @@ function Profile(props) {
                             // backgroundColor: colors.grey
                         }}>
                             <Picker
-                                selectedValue={selectedValue}
+                                selectedValue={selectedValue3}
                                 mode="dropdown"
                                 style={{
                                     transform: [
@@ -119,7 +124,7 @@ function Profile(props) {
                                         { scaleY: 1.4 },
                                     ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
                                 }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValue3(itemValue)}
                             >
                                 <Picker.Item label="option" value="option" />
                                 <Picker.Item label="option2" value="option2" />
@@ -136,7 +141,7 @@ function Profile(props) {
                             // backgroundColor: colors.grey
                         }}>
                             <Picker
-                                selectedValue={selectedValue}
+                                selectedValue={selectedValue4}
                                 mode="dropdown"
                                 style={{
                                     transform: [
@@ -144,7 +149,7 @@ function Profile(props) {
                                         { scaleY: 1.4 },
                                     ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
                                 }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValue4(itemValue)}
                             >
                                 <Picker.Item label="option" value="option" />
                                 <Picker.Item label="option2" value="option2" />
@@ -161,7 +166,7 @@ function Profile(props) {
                             // backgroundColor: colors.grey
                         }}>
                             <Picker
-                                selectedValue={selectedValue}
+                                selectedValue={selectedValue5}
                                 mode="dropdown"
                                 style={{
                                     transform: [
@@ -169,7 +174,7 @@ function Profile(props) {
                                         { scaleY: 1.4 },
                                     ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
                                 }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                                onValueChange={(itemValue, itemIndex) => setSelectedValue5(itemValue)}
                             >
                                 <Picker.Item label="option" value="option" />
                                 <Picker.Item label="option2" value="option2" />
