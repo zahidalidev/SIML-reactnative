@@ -42,14 +42,15 @@ function AppPicker({
 
             <Modal visible={modalVisible} animationType="slide" >
                 <SafeAreaView style={{ flex: 1 }} >
-                    <View style={{ flex: 1, flexDirection: 'column' }} >
-                        <Button title="Close" onPress={() => setModalVisible(false)} />
-                        <ScrollView showsVerticalScrollIndicator={false} >
-                            {items.map((item, index) => <TouchableOpacity key={index} onPress={() => {
+                    <View style={{ flex: 1, flexDirection: 'column', marginTop: RFPercentage(3), justifyContent: "center", alignItems: 'center' }} >
+
+                        <MaterialCommunityIcons style={{ alignSelf: "flex-end", marginRight: RFPercentage(3) }} onPress={() => setModalVisible(false)} name="close" size={30} />
+                        <ScrollView style={{ marginTop: RFPercentage(2), width: "90%" }} showsVerticalScrollIndicator={false} >
+                            {items.map((item, index) => <TouchableOpacity style={{ marginTop: RFPercentage(1), backgroundColor: colors.lightPrimary, justifyContent: "center", alignItems: "center" }} key={index} onPress={() => {
                                 setModalVisible(false);
                                 onSelectItem(item)
                             }} >
-                                <Text style={{ padding: 20 }} >{item.label}</Text>
+                                <Text style={{ padding: 12, fontSize: RFPercentage(2.5), color: "#7f7979" }} >{item.label}</Text>
                             </TouchableOpacity>
                             )}
                         </ScrollView>

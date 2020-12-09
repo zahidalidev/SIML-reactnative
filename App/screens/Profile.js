@@ -59,7 +59,7 @@ function Profile(props) {
                         </TouchableOpacity>
                     </ImageBackground>
 
-                    {/*Custom Drop downs */}
+                    {/*Custom Drop downs components */}
                     <View style={{ marginTop: RFPercentage(15), width: "100%", flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }} >
                         <MainPicker
                             items={[{ label: 'option1' }, { label: 'optio2n' }]}
