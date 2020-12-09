@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -8,15 +8,18 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { LinearGradient } from 'expo-linear-gradient';
 import { Picker } from "@react-native-community/picker"
 
+
 import colors from '../config/colors'
+import AppPicker from '../components/AppPicker';
+import MainPicker from '../components/MainPicker';
 
 function Profile(props) {
 
-    const [selectedValue, setSelectedValue] = useState("option");
-    const [selectedValue2, setSelectedValue2] = useState("option");
-    const [selectedValue3, setSelectedValue3] = useState("option");
-    const [selectedValue4, setSelectedValue4] = useState("option");
-    const [selectedValue5, setSelectedValue5] = useState("option");
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [selectedValue2, setSelectedValue2] = useState(null);
+    const [selectedValue3, setSelectedValue3] = useState(null);
+    const [selectedValue4, setSelectedValue4] = useState(null);
+    const [selectedValue5, setSelectedValue5] = useState(null);
 
     const [selectedImage, setImage] = useState(null)
 
@@ -38,11 +41,11 @@ function Profile(props) {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" backgroundColor='white' />
-            <ScrollView style={styles.scrollContainer} >
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer} >
                 <View style={styles.subContainer} >
 
                     <View style={{ marginTop: RFPercentage(4), flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
-                        <Text style={{ letterSpacing: RFPercentage(0.6), fontSize: RFPercentage(3.3), fontFamily: 'serif', color: colors.primary }} >SIML</Text>
+                        <Text style={{ letterSpacing: RFPercentage(0.6), fontSize: RFPercentage(3.3), fontFamily: Platform.OS === 'ios' ? 'Verdana' : 'serif', color: colors.primary }} >SIML</Text>
                     </View>
                     <View style={{ marginTop: RFPercentage(2), flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
                         <Text style={{ letterSpacing: RFPercentage(0.3), fontSize: RFPercentage(2.5), color: 'black' }} >create your profile</Text>
@@ -56,133 +59,33 @@ function Profile(props) {
                         </TouchableOpacity>
                     </ImageBackground>
 
-                    {/* Drop downs */}
+                    {/*Custom Drop downs */}
                     <View style={{ marginTop: RFPercentage(15), width: "100%", flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }} >
-                        <LinearGradient colors={['transparent', '#e8e8e8']} style={{
-                            flex: 1,
-                            marginTop: RFPercentage(1.5),
-                            width: "100%",
-                            alignItems: "center",
-                            // backgroundColor: colors.grey
-                        }}>
-                            <Picker
-                                selectedValue={selectedValue}
-                                mode="dropdown"
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.4 },
-                                        { scaleY: 1.4 },
-                                    ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
-                                }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-                            >
-                                <Picker.Item label="option" value="option" />
-                                <Picker.Item label="option2" value="option2" />
-                                <Picker.Item label="option3" value="option3" />
-                                <Picker.Item label="option4" value="option4" />
-                            </Picker>
-
-                        </LinearGradient>
-                        <LinearGradient colors={['transparent', '#e8e8e8']} style={{
-                            flex: 1,
-                            marginTop: RFPercentage(1.5),
-                            width: "100%",
-                            alignItems: "center",
-                            // backgroundColor: colors.grey
-                        }}>
-                            <Picker
-                                selectedValue={selectedValue2}
-                                mode="dropdown"
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.4 },
-                                        { scaleY: 1.4 },
-                                    ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
-                                }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue2(itemValue)}
-                            >
-                                <Picker.Item label="option" value="option" />
-                                <Picker.Item label="option2" value="option2" />
-                                <Picker.Item label="option3" value="option3" />
-                                <Picker.Item label="option4" value="option4" />
-                            </Picker>
-
-                        </LinearGradient>
-                        <LinearGradient colors={['transparent', '#e8e8e8']} style={{
-                            flex: 1,
-                            marginTop: RFPercentage(1.5),
-                            width: "100%",
-                            alignItems: "center",
-                            // backgroundColor: colors.grey
-                        }}>
-                            <Picker
-                                selectedValue={selectedValue3}
-                                mode="dropdown"
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.4 },
-                                        { scaleY: 1.4 },
-                                    ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
-                                }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue3(itemValue)}
-                            >
-                                <Picker.Item label="option" value="option" />
-                                <Picker.Item label="option2" value="option2" />
-                                <Picker.Item label="option3" value="option3" />
-                                <Picker.Item label="option4" value="option4" />
-                            </Picker>
-
-                        </LinearGradient>
-                        <LinearGradient colors={['transparent', '#e8e8e8']} style={{
-                            flex: 1,
-                            marginTop: RFPercentage(1.5),
-                            width: "100%",
-                            alignItems: "center",
-                            // backgroundColor: colors.grey
-                        }}>
-                            <Picker
-                                selectedValue={selectedValue4}
-                                mode="dropdown"
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.4 },
-                                        { scaleY: 1.4 },
-                                    ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
-                                }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue4(itemValue)}
-                            >
-                                <Picker.Item label="option" value="option" />
-                                <Picker.Item label="option2" value="option2" />
-                                <Picker.Item label="option3" value="option3" />
-                                <Picker.Item label="option4" value="option4" />
-                            </Picker>
-
-                        </LinearGradient>
-                        <LinearGradient colors={['transparent', '#e8e8e8']} style={{
-                            flex: 1,
-                            marginTop: RFPercentage(1.5),
-                            width: "100%",
-                            alignItems: "center",
-                            // backgroundColor: colors.grey
-                        }}>
-                            <Picker
-                                selectedValue={selectedValue5}
-                                mode="dropdown"
-                                style={{
-                                    transform: [
-                                        { scaleX: 1.4 },
-                                        { scaleY: 1.4 },
-                                    ], height: RFPercentage(6), width: "70%", color: colors.darkGrey
-                                }}
-                                onValueChange={(itemValue, itemIndex) => setSelectedValue5(itemValue)}
-                            >
-                                <Picker.Item label="option" value="option" />
-                                <Picker.Item label="option2" value="option2" />
-                                <Picker.Item label="option3" value="option3" />
-                                <Picker.Item label="option4" value="option4" />
-                            </Picker>
-
-                        </LinearGradient>
+                        <MainPicker
+                            items={[{ label: 'option1' }, { label: 'optio2n' }]}
+                            selectedValue={selectedValue}
+                            setSelectedValue={(item) => setSelectedValue(item)}
+                        />
+                        <MainPicker
+                            items={[{ label: 'option1' }, { label: 'optio2n' }]}
+                            selectedValue={selectedValue2}
+                            setSelectedValue={(item) => setSelectedValue2(item)}
+                        />
+                        <MainPicker
+                            items={[{ label: 'option1' }, { label: 'optio2n' }]}
+                            selectedValue={selectedValue3}
+                            setSelectedValue={(item) => setSelectedValue3(item)}
+                        />
+                        <MainPicker
+                            items={[{ label: 'option1' }, { label: 'optio2n' }]}
+                            selectedValue={selectedValue4}
+                            setSelectedValue={(item) => setSelectedValue4(item)}
+                        />
+                        <MainPicker
+                            items={[{ label: 'option1' }, { label: 'optio2n' }]}
+                            selectedValue={selectedValue5}
+                            setSelectedValue={(item) => setSelectedValue5(item)}
+                        />
                     </View>
 
                 </View>

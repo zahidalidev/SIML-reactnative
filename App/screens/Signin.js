@@ -11,7 +11,7 @@ function Signin(props) {
             {/* <ScrollView style={styles.scrollContainer} > */}
             <View style={styles.subContainer} >
                 <View style={{ alignItems: 'center', justifyContent: 'center' }} >
-                    <Text style={{ letterSpacing: RFPercentage(1.2), fontSize: RFPercentage(9), fontFamily: 'serif', color: colors.primary }} >SIML</Text>
+                    <Text style={{ letterSpacing: RFPercentage(1.2), fontSize: RFPercentage(9), fontFamily: Platform.OS === 'ios' ? 'Verdana' : 'serif', color: colors.primary }} >SIML</Text>
                 </View>
                 <View style={{ elevation: 1, marginTop: RFPercentage(2.3), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                     <TouchableOpacity
