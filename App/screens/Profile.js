@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Picker } from 'react-native';
+import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, ImageBackground } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import Constants from 'expo-constants'
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { LinearGradient } from 'expo-linear-gradient';
+import { Picker } from "@react-native-community/picker"
 
 import colors from '../config/colors'
 
 function Profile(props) {
-    const [feildBackColor, setFeildBackColor] = useState('white')
-    const [borderWidth, setBborderWidth] = useState(1.4)
-
-    const [feildBackColor2, setFeildBackColor2] = useState('white')
-    const [borderWidth2, setBborderWidth2] = useState(1.4)
 
     const [selectedValue, setSelectedValue] = useState("option");
+    const [selectedImage, setImage] = useState(null)
+
+
+    const handleImage = async () => {
+        let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+        if (permissionResult.granted === false) {
+            alert("Permission to access camera roll is required!");
+            return;
+        }
+
+        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        setImage(pickerResult)
+        console.log(pickerResult);
+
+    }
 
     return (
         <View style={styles.container}>
@@ -31,11 +44,12 @@ function Profile(props) {
                     </View>
 
                     {/* profile picture */}
-                    <View style={{ marginTop: RFPercentage(3), borderRadius: RFPercentage(10), width: RFPercentage(20), height: RFPercentage(20), borderColor: colors.primary, borderWidth: 1, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
-                        <TouchableOpacity style={{ backgroundColor: 'white', borderRadius: RFPercentage(3.5), width: RFPercentage(7), height: RFPercentage(7), borderColor: colors.primary, borderWidth: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                    <ImageBackground borderRadius={RFPercentage(10)} source={selectedImage} style={{ marginTop: RFPercentage(3), borderRadius: RFPercentage(10), width: RFPercentage(20), height: RFPercentage(20), borderColor: colors.primary, borderWidth: 1, flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                        {/* <Image style={{ zIndex: -1 }} source={selectedImage} /> */}
+                        <TouchableOpacity onPress={() => handleImage()} style={{ zIndex: 2, backgroundColor: 'white', borderRadius: RFPercentage(3.5), width: RFPercentage(7), height: RFPercentage(7), borderColor: colors.primary, borderWidth: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
                             <MaterialCommunityIcons size={26} color="black" name="plus" />
                         </TouchableOpacity>
-                    </View>
+                    </ImageBackground>
 
                     {/* Drop downs */}
                     <View style={{ marginTop: RFPercentage(15), width: "100%", flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }} >
