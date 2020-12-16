@@ -4,13 +4,17 @@ import { StyleSheet } from 'react-native';
 import Login from './App/screens/Login';
 import Profile from './App/screens/Profile';
 import Signin from './App/screens/Signin';
+import SignUpWithEmail from './App/screens/SignUpWithEmail';
+import SignUp from './App/screens/SignUp';
 
 export default function App() {
   return (
     <>
       {/* <Signin /> */}
       {/* <Login /> */}
-      <Profile />
+      {/* <Profile /> */}
+      <SignUp />
+      {/* <SignUpWithEmail /> */}
     </>
   );
 }

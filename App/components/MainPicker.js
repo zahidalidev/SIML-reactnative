@@ -37,7 +37,7 @@ function MainPicker({ selectedValue, setSelectedValue, items }) {
                     }}
                     onValueChange={(itemValue) => setSelectedValue(itemValue)}
                 >
-                    {items.map(item => <Picker.Item label={item.label} value={item.label} />)}
+                    {items.map((item, i) => <Picker.Item key={i} label={item.label} value={item.label} />)}
                 </Picker>
 
             </LinearGradient>
