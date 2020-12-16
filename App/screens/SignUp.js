@@ -49,7 +49,7 @@ function SignUp(props) {
                         }}
                         onPress={() => console.log("sign in")}
                     >
-                        <Text style={{ letterSpacing: RFPercentage(0.4), color: '#686767', padding: 10, fontSize: RFPercentage(2.2) }} >sign up with phone</Text>
+                        <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign up with phone</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ elevation: 1, marginTop: RFPercentage(3), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
@@ -60,14 +60,14 @@ function SignUp(props) {
                         }}
                         onPress={() => console.log("sign in")}
                     >
-                        <Text style={{ letterSpacing: RFPercentage(0.4), color: 'white', padding: 10, fontSize: RFPercentage(2.2) }} >sign up with Facebook</Text>
+                        <Text style={{ letterSpacing: RFPercentage(0.3), color: 'white', padding: 10, fontSize: RFPercentage(2) }} >sign up with Facebook</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={{ flexDirection: 'row', marginTop: RFPercentage(2), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                     <Image resizeMode="cover" style={{ maxHeight: 30, maxWidth: 30 }} source={require("../../assets/googleIcon.png")} />
                     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }} >
-                        <Text style={{ letterSpacing: RFPercentage(0.4), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign in with Google</Text>
+                        <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign in with Google</Text>
                     </TouchableOpacity>
                 </View>
             </View>

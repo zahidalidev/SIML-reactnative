@@ -4,8 +4,10 @@ import { StyleSheet } from 'react-native';
 import Login from './App/screens/Login';
 import Profile from './App/screens/Profile';
 import Signin from './App/screens/Signin';
-import SignUpWithEmail from './App/screens/SignUpWithEmail';
 import SignUp from './App/screens/SignUp';
+import SignUpWithEmail from './App/screens/SignUpWithEmail';
+import SignUpWithNumber from './App/screens/SignUpWithNumber';
+import VerifyCode from './App/screens/VerifyCode';
 
 export default function App() {
   return (
@@ -14,7 +16,8 @@ export default function App() {
       {/* <Login /> */}
       {/* <Profile /> */}
       {/* <SignUp /> */}
-      <SignUpWithEmail />
+      {/* <SignUpWithNumber /> */}
+      {/* <VerifyCode /> */}
     </>
   );
 }
