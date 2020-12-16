@@ -34,7 +34,7 @@ function SignUpWithEmail(props) {
                             onFocus={() => {
                                 setFeildBackColor(colors.lightPrimary)
                                 setBborderWidth(0)
-                                setMargin(Platform.OS === 'ios' ? -RFPercentage(65) : 0)
+                                setMargin(Platform.OS === 'ios' ? -RFPercentage(15) : 0)
 
                             }}
                             onEndEditing={() => {
@@ -52,7 +52,7 @@ function SignUpWithEmail(props) {
                             onFocus={() => {
                                 setFeildBackColor2(colors.lightPrimary)
                                 setBborderWidth2(0)
-                                setMargin(Platform.OS === 'ios' ? -RFPercentage(65) : 0)
+                                setMargin(Platform.OS === 'ios' ? -RFPercentage(15) : 0)
                             }}
                             onEndEditing={() => {
                                 setFeildBackColor2('white')
@@ -68,7 +68,7 @@ function SignUpWithEmail(props) {
                             onFocus={() => {
                                 setFeildBackColor3(colors.lightPrimary)
                                 setBborderWidth3(0)
-                                setMargin(Platform.OS === 'ios' ? -RFPercentage(65) : 0)
+                                setMargin(Platform.OS === 'ios' ? -RFPercentage(15) : 0)
                             }}
                             onEndEditing={() => {
                                 setFeildBackColor3('white')
@@ -86,7 +86,7 @@ function SignUpWithEmail(props) {
                                 onFocus={() => {
                                     setFeildBackColor4(colors.lightPrimary)
                                     setBborderWidth4(0)
-                                    setMargin(Platform.OS === 'ios' ? -RFPercentage(65) : 0)
+                                    setMargin(Platform.OS === 'ios' ? -RFPercentage(22) : 0)
                                 }}
                                 onEndEditing={() => {
                                     setFeildBackColor4('white')
@@ -105,24 +105,24 @@ function SignUpWithEmail(props) {
                                 backgroundColor: '#fff',
                                 shadowColor: '#000',
                                 shadowOffset: { width: 1, height: 1 },
-                                shadowOpacity: 0,
+                                shadowOpacity: 0.4,
                                 shadowRadius: 1,
                                 elevation: 3,
                                 width: '100%', alignItems: 'center', justifyContent: 'center'
                             }}
                             onPress={() => console.log("sign in")}
                         >
-                            <Text style={{ letterSpacing: RFPercentage(0.4), color: colors.primary, padding: 10, fontSize: RFPercentage(2.2) }} >sign up</Text>
+                            <Text style={{ letterSpacing: RFPercentage(0.3), color: colors.primary, padding: 10, fontSize: RFPercentage(2.2) }} >sign up</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
 
 
             </View>
-            <View style={{ marginBottom: RFPercentage(3), flexDirection: 'column', marginTop: RFPercentage(15), width: '90%', alignItems: 'center', justifyContent: 'center' }} >
-                <Text style={{ marginBottom: -RFPercentage(1.6), letterSpacing: RFPercentage(0.4), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >by clicking sign up you are agree to</Text>
+            <View style={{ marginBottom: RFPercentage(3), flexDirection: 'column', marginTop: Platform.OS === 'ios' ? RFPercentage(20) : RFPercentage(15), width: '90%', alignItems: 'center', justifyContent: 'center' }} >
+                <Text style={{ marginBottom: -RFPercentage(1.6), letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >by clicking sign up you are agree to</Text>
                 <View style={{ flexDirection: 'row' }} >
-                    <Text style={{ letterSpacing: RFPercentage(0.4), color: '#686767', fontSize: RFPercentage(2) }} >SIML's</Text>
+                    <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', fontSize: RFPercentage(2) }} >SIML's</Text>
                     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }} >
                         <Text style={{ borderColor: colors.primary, borderBottomWidth: 1, color: colors.primary, letterSpacing: RFPercentage(0.4), paddingBottom: 1, marginLeft: 7, paddingRight: 1, fontSize: RFPercentage(2) }} >terms and conditions</Text>
                     </TouchableOpacity>

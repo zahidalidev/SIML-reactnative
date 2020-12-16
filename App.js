@@ -17,6 +17,7 @@ export default function App() {
       {/* <Profile /> */}
       {/* <SignUp /> */}
       {/* <SignUpWithNumber /> */}
+      <SignUpWithEmail />
       {/* <VerifyCode /> */}
     </>
   );
