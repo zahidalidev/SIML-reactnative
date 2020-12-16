@@ -13,8 +13,8 @@ export default function App() {
       {/* <Signin /> */}
       {/* <Login /> */}
       {/* <Profile /> */}
-      <SignUp />
-      {/* <SignUpWithEmail /> */}
+      {/* <SignUp /> */}
+      <SignUpWithEmail />
     </>
   );
 }
