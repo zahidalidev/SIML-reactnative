@@ -16,6 +16,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
+    "react-native-modalbox": "^2.0.2",
     "react-native-responsive-fontsize": "^0.5.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "~0.13.12"

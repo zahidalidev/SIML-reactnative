@@ -9,6 +9,7 @@ import SignUpWithEmail from './App/screens/SignUpWithEmail';
 import SignUpWithNumber from './App/screens/SignUpWithNumber';
 import VerifyCode from './App/screens/VerifyCode';
 import SwapImage from './App/screens/SwapImage';
+import Contact from './App/screens/Contact';
 
 export default function App() {
   return (
@@ -20,7 +21,8 @@ export default function App() {
       {/* <SignUpWithNumber /> */}
       {/* <SignUpWithEmail /> */}
       {/* <VerifyCode /> */}
-      <SwapImage />
+      {/* <SwapImage /> */}
+      <Contact />
     </>
   );
 }
