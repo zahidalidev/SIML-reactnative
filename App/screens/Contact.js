@@ -8,10 +8,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { LinearGradient } from 'expo-linear-gradient';
 import { Picker } from "@react-native-community/picker"
 
-
 import colors from '../config/colors'
 import AppPicker from '../components/AppPicker';
 import ContactPicker from '../components/ContactPicker';
+import TimePicker from '../components/TimePicker';
 
 function Contact(props) {
 
@@ -21,6 +21,8 @@ function Contact(props) {
     const [feildBackColor4, setFeildBackColor4] = useState('white')
     const [borderWidth4, setBborderWidth4] = useState(1.4)
     const [topMargin, setMargin] = useState(RFPercentage(8))
+
+
 
     // console.log(selectedValue)
     return (
@@ -56,12 +58,12 @@ function Contact(props) {
                         items={[{ label: 'option1' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }]}
                         selectedItem={selectedValue}
                         setSelectedValue={(item) => setSelectedValue(item)}
-                        width="30%"
+                        width="40%"
                         numberOfColumns={1}
                         placeholder='ADD'
                         icon="plus"
                     />
-                    <ContactPicker
+                    <TimePicker
                         items={[{ label: '2 min' }, { label: '4 min' }, { label: '6 min' }, { label: '8 min' }, { label: '10 min' }]}
                         selectedItem={selectedValue2}
                         setSelectedValue={(item) => setSelectedValue2(item)}
@@ -84,7 +86,7 @@ function Contact(props) {
                             elevation: 3,
                             width: '100%', alignItems: 'center', justifyContent: 'center'
                         }}
-                        onPress={() => console.log("sign in")}
+                        onPress={() => console.log('send')}
                     >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: colors.primary, padding: 10, fontSize: RFPercentage(2.2) }} >send</Text>
                     </TouchableOpacity>

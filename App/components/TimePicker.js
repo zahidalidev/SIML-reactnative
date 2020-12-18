@@ -3,13 +3,12 @@ import { TouchableOpacity, SafeAreaView, Text, Button, FlatList, Platform, Style
 import Modal from 'react-native-modalbox';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from 'expo-linear-gradient';
-import * as Contacts from 'expo-contacts';
 
 // import PickerItem from "./PickerItem";
 import colors from "../config/colors";
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
-function ContactPicker({ icon,
+function TimePicker({ icon,
     items,
     setSelectedValue,
     placeholder,
@@ -17,39 +16,18 @@ function ContactPicker({ icon,
     width }) {
 
     const [modalVisible, setModalVisible] = useState(false)
-    const [contacts, setContacts] = useState([])
 
-    const handleContacts = async () => {
-        const { status } = await Contacts.requestPermissionsAsync();
-        if (status === 'granted') {
-            const { data } = await Contacts.getContactsAsync({
-                fields: [Contacts.Fields.Emails],
-            });
-
-            if (data.length > 0) {
-                const contact = data;
-                setContacts(contact);
-
-                setModalVisible(true)
-            }
-        }
-    }
-
-
+    console.log(selectedItem)
     return (
         <>
-            <TouchableWithoutFeedback onPress={() => handleContacts()} >
+            <TouchableWithoutFeedback onPress={() => setModalVisible(true)} >
                 <LinearGradient colors={['transparent', 'rgba(219, 217, 217, 0.8)']} style={[styles.container, { width, marginLeft: "10%" }]} >
-                    <Text numberOfLines={1} style={[styles.text, { fontSize: RFPercentage(2.9), color: 'black' }]} >{selectedItem ? selectedItem.name : placeholder}</Text>
-
-                    <View style={{ borderWidth: 1, borderRadius: 50, marginLeft: 10 }} >
-                        <MaterialCommunityIcons
-                            name={icon}
-                            size={RFPercentage(2.5)}
-                            color='black'
-                        />
-                    </View>
-
+                    <Text style={[styles.text, { fontSize: RFPercentage(2.9), color: 'black' }]} >{selectedItem ? selectedItem.label : placeholder}</Text>
+                    <MaterialCommunityIcons
+                        name={icon}
+                        size={RFPercentage(3)}
+                        color='black'
+                    />
                 </LinearGradient>
             </TouchableWithoutFeedback>
 
@@ -64,11 +42,11 @@ function ContactPicker({ icon,
 
                 <MaterialCommunityIcons style={{ alignSelf: "flex-end", marginRight: RFPercentage(3) }} onPress={() => setModalVisible(false)} name="close" size={30} />
                 <ScrollView style={{ paddingBottom: RFPercentage(4), width: "90%" }} showsVerticalScrollIndicator={true} >
-                    {contacts.map((contact, index) => <TouchableOpacity style={{ marginTop: RFPercentage(1), backgroundColor: colors.lightPrimary, justifyContent: "center", alignItems: "center" }} key={index} onPress={() => {
+                    {items.map((item, index) => <TouchableOpacity style={{ marginTop: RFPercentage(1), backgroundColor: colors.lightPrimary, justifyContent: "center", alignItems: "center" }} key={index} onPress={() => {
                         setModalVisible(false);
-                        setSelectedValue(contact)
+                        setSelectedValue(item)
                     }} >
-                        <Text style={{ padding: 12, fontSize: RFPercentage(2.5), color: "#7f7979" }} >{contact.name}</Text>
+                        <Text style={{ padding: 12, fontSize: RFPercentage(2.5), color: "#7f7979" }} >{item.label}</Text>
                     </TouchableOpacity>
                     )}
                 </ScrollView>
@@ -97,4 +75,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ContactPicker;
+export default TimePicker;
