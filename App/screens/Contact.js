@@ -55,7 +55,6 @@ function Contact(props) {
                 {/*Custom Drop downs components */}
                 <View style={{ width: "100%", flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start', flex: 2, marginTop: RFPercentage(5) }} >
                     <ContactPicker
-                        items={[{ label: 'option1' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }, { label: 'optio2n' }]}
                         selectedItem={selectedValue}
                         setSelectedValue={(item) => setSelectedValue(item)}
                         width="40%"

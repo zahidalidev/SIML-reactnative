@@ -10,7 +10,6 @@ import colors from "../config/colors";
 import { RFPercentage } from 'react-native-responsive-fontsize';
 
 function ContactPicker({ icon,
-    items,
     setSelectedValue,
     placeholder,
     selectedItem,
