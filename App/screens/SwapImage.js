@@ -94,8 +94,8 @@ function SwapImage(props) {
 
     const renderItem = ({ item, index }) => {
         return (
-            <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(4), width: "95%", justifyContent: "center", alignItems: 'center' }} >
-                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%' }} >
+            <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(6), width: "95%", justifyContent: "center", alignItems: 'center' }} >
+                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97.5%', marginBottom: -RFPercentage(1.6) }} >
                     <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
                         <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
                         <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>

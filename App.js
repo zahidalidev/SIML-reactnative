@@ -24,7 +24,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="Contact">
+          }} initialRouteName="SignUpWithNumber">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />

@@ -120,7 +120,7 @@ function SignUpWithEmail(props) {
 
             </View>
             <View style={{ marginBottom: RFPercentage(3), flexDirection: 'column', marginTop: Platform.OS === 'ios' ? RFPercentage(20) : RFPercentage(15), width: '90%', alignItems: 'center', justifyContent: 'center' }} >
-                <Text style={{ marginBottom: -RFPercentage(1.6), letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >by clicking sign up you are agree to</Text>
+                <Text style={{ marginBottom: -RFPercentage(1.6), letterSpacing: RFPercentage(0.2), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >by clicking sign up you are agree to</Text>
                 <View style={{ flexDirection: 'row' }} >
                     <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', fontSize: RFPercentage(2) }} >SIML's</Text>
                     <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }} >
