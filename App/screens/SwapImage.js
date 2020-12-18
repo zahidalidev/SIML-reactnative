@@ -9,7 +9,7 @@ const screenWidth = Dimensions.get('window').width
 function SwapImage(props) {
 
     const [render, setRender] = useState(true)
-
+    const [right, setRight] = useState(false)
     const [data, setData] = useState([
         {
             id: 1,
@@ -66,8 +66,8 @@ function SwapImage(props) {
     }
 
     const animatedStyles = (index, animatedValue, carouselProps) => {
-        const sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
-        const translateProp = carouselProps.vertical ? 'translateY' : 'translateX';
+        // const sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
+        // const translateProp = carouselProps.vertical ? 'translateY' : 'translateX';
 
         return {
             zIndex: carouselProps.data.length - index,
@@ -76,24 +76,23 @@ function SwapImage(props) {
                 outputRange: [1, 0]
             }),
             transform: [{
+                perspective: 1000
+            },
+            {
+                scale: animatedValue.interpolate({
+                    inputRange: [-1, 0, 1],
+                    outputRange: [0.8, 1, 0.8],
+                    extrapolate: 'clamp'
+                })
+            },
+            {
                 rotate: animatedValue.interpolate({
                     inputRange: [-1, 0, 1],
-                    outputRange: ['-10deg', '0deg', '0deg'],
+                    outputRange: ['-10deg', '0deg', '10deg'],
                     extrapolate: 'clamp'
                 })
-            }, {
-                [translateProp]: animatedValue.interpolate({
-                    inputRange: [-1, 0, 1],
-                    outputRange: [
-                        -sizeRef * 0.5,
-                        0,
-                        -sizeRef, // centered
-                        // -sizeRef * 2, // centered
-                        // -sizeRef * 3 // centered
-                    ],
-                    extrapolate: 'clamp'
-                })
-            }]
+            }
+            ]
         };
     }
 
@@ -137,8 +136,10 @@ function SwapImage(props) {
                 useScrollView={true}
                 activeAnimationType="timing"
                 scrollInterpolator={scrollInterpolator}
-                // slideInterpolatedStyle={animatedStyles}
+                slideInterpolatedStyle={animatedStyles}
                 useScrollView={true}
+            // onTouchStart={() => setRight(true)}
+
             />
         </View>
     );
