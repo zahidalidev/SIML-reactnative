@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dimensions, Image, ImageBackground, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Dimensions, Image, ImageBackground, StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
 import Carousel, { getInputRangeFromIndexes } from 'react-native-snap-carousel';
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -13,17 +13,22 @@ function SwapImage(props) {
     const [data, setData] = useState([
         {
             id: 1,
-            image: 'https://i.pinimg.com/736x/ff/cf/c4/ffcfc429357d09a1fd376de27af02b2b.jpg',
+            image: 'https://image.resy.com/3/003/2/35879/574c6ab21b6910d6cbd2da085a125944ca3df77c/jpg/640x360',
             liked: true
         },
         {
             id: 2,
-            image: 'https://images.unsplash.com/photo-1534425240762-0890ffd1d24a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxMjA3fDB8MXxzZWFyY2h8MXx8d2FsbHBhcGVyJTIwZm9yJTIwbW9iaWxlfHwwfHx8&ixlib=rb-1.2.1&q=80&w=1080',
+            image: 'https://image.resy.com/3/003/2/7535/025761144dcc2590de6d3d1222a3d30985a9e65d/jpg/640x360',
             liked: false
         },
         {
             id: 3,
-            image: 'https://www.imagesjunction.com/images/img/1920x1080_mobile_hd_wallpapers.jpg',
+            image: 'https://image.resy.com/3/003/2/5146/b01cefbb81ab6de976679c06fe6fc9bfee0698e3/jpg/640x360',
+            liked: false
+        },
+        {
+            id: 4,
+            image: 'https://image.resy.com/3/003/2/10527/b7dd46bb6d9ed0e068b64399b2c05df3a69b45e6/jpg/640x360',
             liked: false
         },
     ])
@@ -53,7 +58,7 @@ function SwapImage(props) {
     }
 
     const scrollInterpolator = (index, carouselProps) => {
-        const range = [3, 2, 1, 0, -1];
+        const range = [1, 0, -1];
         const inputRange = getInputRangeFromIndexes(range, index, carouselProps);
         const outputRange = range;
 
@@ -72,19 +77,19 @@ function SwapImage(props) {
             }),
             transform: [{
                 rotate: animatedValue.interpolate({
-                    inputRange: [-1, 0, 1, 2, 3],
-                    outputRange: ['0deg', '0deg', '0deg', '0deg', '0deg'],
+                    inputRange: [-1, 0, 1],
+                    outputRange: ['-10deg', '0deg', '0deg'],
                     extrapolate: 'clamp'
                 })
             }, {
                 [translateProp]: animatedValue.interpolate({
-                    inputRange: [-1, 0, 1, 2, 3],
+                    inputRange: [-1, 0, 1],
                     outputRange: [
                         -sizeRef * 0.5,
                         0,
                         -sizeRef, // centered
-                        -sizeRef * 2, // centered
-                        -sizeRef * 3 // centered
+                        // -sizeRef * 2, // centered
+                        // -sizeRef * 3 // centered
                     ],
                     extrapolate: 'clamp'
                 })
@@ -94,19 +99,19 @@ function SwapImage(props) {
 
     const renderItem = ({ item, index }) => {
         return (
-            <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(6), width: "95%", justifyContent: "center", alignItems: 'center' }} >
-                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97.5%', marginBottom: -RFPercentage(1.6) }} >
+            <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(5), width: "95%", justifyContent: "center", alignItems: 'center' }} >
+                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
                     <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
                         <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
                         <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
                     </View>
                 </ImageBackground>
-                <View style={{ width: '30%', flexDirection: 'row', backgroundColor: 'white', flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end' }} >
-                    <TouchableOpacity style={{ backgroundColor: 'white', marginRight: RFPercentage(8) }} >
-                        <MaterialCommunityIcons onPress={() => handleNextImage(item)} color="grey" size={30} name='close' />
+                <View style={{ width: '70%', flexDirection: 'row', backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'flex-end' }} >
+                    <TouchableOpacity style={{ backgroundColor: 'white', flex: 1, alignItems: 'center' }} >
+                        <MaterialCommunityIcons onPress={() => handleNextImage(item)} color="grey" size={40} name='close' />
                     </TouchableOpacity>
-                    <View style={{ backgroundColor: 'white' }} >
-                        <MaterialCommunityIcons onPress={() => handleLike(item)} color="red" size={30} name={item.liked ? 'heart' : 'heart-outline'} />
+                    <View style={{ backgroundColor: 'white', flex: 1, alignItems: 'center' }} >
+                        <MaterialCommunityIcons onPress={() => handleLike(item)} color="red" size={40} name={item.liked ? 'heart' : 'heart-outline'} />
                     </View>
                 </View>
 
