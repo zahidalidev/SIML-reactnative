@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import colors from '../config/colors'
 
-function SignUp(props) {
+function SignUp({ navigation }) {
     return (
         <View style={styles.container}>
             <StatusBar style="auto" backgroundColor='white' />
@@ -28,7 +28,7 @@ function SignUp(props) {
                             borderColor: '#848484',
                             width: '100%', alignItems: 'center', justifyContent: 'center'
                         }}
-                        onPress={() => console.log("Sign up with email")}
+                        onPress={() => navigation.navigate('SignUpWithEmail')}
                     >
                         <Text style={{ letterSpacing: RFPercentage(0.4), color: '#686767', padding: 10, fontSize: RFPercentage(2.2) }} >sign up with email</Text>
                     </TouchableOpacity>
@@ -47,7 +47,7 @@ function SignUp(props) {
                             borderColor: '#848484',
                             width: '100%', alignItems: 'center', justifyContent: 'center'
                         }}
-                        onPress={() => console.log("sign in")}
+                        onPress={() => navigation.navigate('SignUpWithNumber')}
                     >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign up with phone</Text>
                     </TouchableOpacity>
