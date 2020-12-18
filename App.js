@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Login from './App/screens/Login';
-import Profile from './App/screens/Profile';
+import CreateProfile from './App/screens/CreateProfile';
 import Signin from './App/screens/Signin';
 import SignUp from './App/screens/SignUp';
 import SignUpWithEmail from './App/screens/SignUpWithEmail';
@@ -12,6 +12,7 @@ import SignUpWithNumber from './App/screens/SignUpWithNumber';
 import VerifyCode from './App/screens/VerifyCode';
 import SwapImage from './App/screens/SwapImage';
 import Contact from './App/screens/Contact';
+import ProfileDetail from './App/screens/ProfileDetail';
 
 
 
@@ -24,7 +25,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="SwapImage">
+          }} initialRouteName="ProfileDetail">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -33,6 +34,8 @@ export default function App() {
           <Stack.Screen name="VerifyCode" component={VerifyCode} />
           <Stack.Screen name="SwapImage" component={SwapImage} />
           <Stack.Screen name="Contact" component={Contact} />
+          <Stack.Screen name="CreateProfile" component={CreateProfile} />
+          <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

@@ -13,7 +13,7 @@ import colors from '../config/colors'
 import AppPicker from '../components/AppPicker';
 import MainPicker from '../components/MainPicker';
 
-function Profile(props) {
+function CreateProfile(props) {
 
     const [selectedValue, setSelectedValue] = useState(null);
     const [selectedValue2, setSelectedValue2] = useState(null);
@@ -120,4 +120,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Profile;
+export default CreateProfile;
