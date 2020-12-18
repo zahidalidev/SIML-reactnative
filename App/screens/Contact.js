@@ -109,6 +109,8 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flex: 1,
         width: "80%",
+        backgroundColor: 'white',
+
     },
     subContainer: {
         // backgroundColor: 'red',
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        // backgroundColor: 'pink',
+        backgroundColor: 'white',
         justifyContent: 'center',
         // marginBottom: RFPercentage(10)
     }

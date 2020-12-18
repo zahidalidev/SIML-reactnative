@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         flex: 10,
         flexDirection: 'column',
         alignItems: 'center',
-        // backgroundColor: 'pink',
+        backgroundColor: 'white',
         justifyContent: 'center',
         // marginBottom: RFPercentage(10)
     }

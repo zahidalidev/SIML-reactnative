@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         flex: 10,
         flexDirection: 'column',
         alignItems: 'center',
-        // backgroundColor: 'pink',
+        backgroundColor: 'white',
         justifyContent: 'flex-end',
         marginBottom: RFPercentage(10)
     }
