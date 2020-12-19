@@ -11,6 +11,7 @@ import SignUpWithEmail from './App/screens/SignUpWithEmail';
 import SignUpWithNumber from './App/screens/SignUpWithNumber';
 import VerifyCode from './App/screens/VerifyCode';
 import SwapImage from './App/screens/SwapImage';
+import SwapImageDetail from './App/screens/SwapImageDetail';
 import Contact from './App/screens/Contact';
 import ProfileDetail from './App/screens/ProfileDetail';
 
@@ -25,7 +26,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="ProfileDetail">
+          }} initialRouteName="SwapImage">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="SignUpWithEmail" component={SignUpWithEmail} />
           <Stack.Screen name="VerifyCode" component={VerifyCode} />
           <Stack.Screen name="SwapImage" component={SwapImage} />
+          <Stack.Screen name="SwapImageDetail" component={SwapImageDetail} />
           <Stack.Screen name="Contact" component={Contact} />
           <Stack.Screen name="CreateProfile" component={CreateProfile} />
           <Stack.Screen name="ProfileDetail" component={ProfileDetail} />

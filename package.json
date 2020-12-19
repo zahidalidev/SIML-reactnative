@@ -14,8 +14,10 @@
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
     "expo": "~39.0.2",
+    "expo-contacts": "~8.5.0",
     "expo-image-picker": "~9.1.1",
     "expo-linear-gradient": "~8.3.0",
+    "expo-progress": "0.0.0",
     "expo-status-bar": "~1.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -23,15 +25,17 @@
     "react-native-gesture-handler": "~1.7.0",
     "react-native-modalbox": "^2.0.2",
     "react-native-reanimated": "~1.13.0",
+    "react-native-redash": "^14.2.4",
     "react-native-responsive-fontsize": "^0.5.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-snap-carousel": "^3.9.1",
-    "react-native-web": "~0.13.12",
-    "expo-contacts": "~8.5.0"
+    "react-native-svg": "12.1.0",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "path": "^0.12.7"
   },
   "private": true
 }

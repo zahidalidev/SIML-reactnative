@@ -6,7 +6,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 
 const screenWidth = Dimensions.get('window').width
 
-function SwapImage(props) {
+function SwapImage({ navigation }) {
 
     const [render, setRender] = useState(true)
     const [right, setRight] = useState(false)
@@ -32,6 +32,25 @@ function SwapImage(props) {
             liked: false
         },
     ])
+
+    const [moreDetaildata, setmoreDetailData] = useState([
+        {
+            id: 1,
+            image: 'https://images.pexels.com/photos/1535162/pexels-photo-1535162.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            liked: true
+        },
+        {
+            id: 2,
+            image: 'https://images.pexels.com/photos/1212487/pexels-photo-1212487.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            liked: false
+        },
+        {
+            id: 3,
+            image: 'https://www.teahub.io/photos/full/8-87389_witcher-dark-background-minimal-4k-ultra-hd-mobile.jpg',
+            liked: false
+        }
+    ])
+
 
     const handleLike = (item) => {
         // const data2 = data;
@@ -99,12 +118,16 @@ function SwapImage(props) {
     const renderItem = ({ item, index }) => {
         return (
             <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(5), width: "95%", justifyContent: "center", alignItems: 'center' }} >
-                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
-                    <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
-                        <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
-                        <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
-                    </View>
-                </ImageBackground>
+
+                <TouchableOpacity activeOpacity={0.9} onPress={() => navigation.navigate('SwapImageDetail', { data: moreDetaildata })} >
+                    <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
+                        <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
+                            <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
+                            <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
+                        </View>
+                    </ImageBackground>
+
+                </TouchableOpacity>
                 <View style={{ width: '70%', flexDirection: 'row', backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'flex-end' }} >
                     <TouchableOpacity style={{ backgroundColor: 'white', flex: 1, alignItems: 'center' }} >
                         <MaterialCommunityIcons onPress={() => handleNextImage(item)} color="grey" size={40} name='close' />
