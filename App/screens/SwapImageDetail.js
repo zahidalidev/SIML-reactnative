@@ -3,7 +3,8 @@ import { Dimensions, Image, ImageBackground, StyleSheet, View, Text, TouchableOp
 import Carousel, { getInputRangeFromIndexes } from 'react-native-snap-carousel';
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { RFPercentage } from 'react-native-responsive-fontsize';
-// import * as Progress from 'expo-progress';
+// import { ProgressBar } from '@react-native-community/progress-bar-android';
+import { ProgressView } from "@react-native-community/progress-view";
 
 const screenWidth = Dimensions.get('window').width
 
@@ -24,7 +25,7 @@ function SwapImageDetail(props) {
 
     const handleNextImage = (item) => {
 
-        let data2 = data;
+        let data2 = props.route.params.data;
 
         const index = data2.indexOf(item)
 
@@ -38,7 +39,17 @@ function SwapImageDetail(props) {
     const renderItem = ({ item, index }) => {
         return (
             <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(5), width: "95%", justifyContent: "center", alignItems: 'center' }} >
-                {/* <Progress.Bar duration={100} isAnimated /> */}
+                {/* <ProgressBar
+                    styleAttr="Horizontal"
+                    indeterminate={false}
+                    progress={0.5}
+                /> */}
+                {Platform.OS === 'ios' ? <ProgressView
+                    progressTintColor="orange"
+                    trackTintColor="blue"
+                    progress={0.7}
+                /> : null}
+
                 <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
                     <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
                         <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
