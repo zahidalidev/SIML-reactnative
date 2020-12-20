@@ -4,7 +4,7 @@ import Carousel, { getInputRangeFromIndexes } from 'react-native-snap-carousel';
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import Constants from 'expo-constants';
-import { ProgressView } from "@react-native-community/progress-view";
+import colors from '../config/colors';
 const screenWidth = Dimensions.get('window').width
 
 function useInterval(callback, delay) {
@@ -28,29 +28,42 @@ function useInterval(callback, delay) {
 }
 
 function SwapImageDetail(props) {
-
+    const [data, setData] = useState(props.route.params.data)
+    const [render, setRender] = useState(true)
     let animation = useRef(new Animated.Value(0));
     const [progress, setProgress] = useState(0);
+    const slideDuration = 5000;
+
     useInterval(() => {
         if (progress < 100) {
             setProgress(progress + 5);
         }
-    }, 1000);
+    }, 0);
 
     useEffect(() => {
-        Animated.timing(animation.current, {
-            toValue: progress,
-            duration: 100
-        }).start();
+        // Animated.timing(animation.current, {
+        //     toValue: progress,
+        //     duration: 5000,
+        //     useNativeDriver: false,
+
+        // }).start();
+        Animated.loop(
+            Animated.timing(animation.current, {
+                toValue: progress,
+                duration: slideDuration,
+                useNativeDriver: false,
+            }),
+            { iterations: 100 },
+        ).start();
     }, [progress])
 
-    const width = animation.current.interpolate({
+    let width = animation.current.interpolate({
         inputRange: [0, 100],
         outputRange: ["0%", "100%"],
         extrapolate: "clamp"
     })
 
-    const [render, setRender] = useState(true)
+
 
     const handleLike = (item) => {
         // const data2 = data;
@@ -65,7 +78,7 @@ function SwapImageDetail(props) {
 
     const handleNextImage = (item) => {
 
-        let data2 = props.route.params.data;
+        let data2 = data;
 
         const index = data2.indexOf(item)
 
@@ -80,15 +93,10 @@ function SwapImageDetail(props) {
         return (
             <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(5), width: "95%", justifyContent: "center", alignItems: 'center' }} >
                 <View style={styles.progressBar}>
-                    <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: "#8BED4F", width }} />
+                    <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: colors.primary, width }} />
                 </View>
-                {Platform.OS === 'ios' ? <ProgressView
-                    progressTintColor="orange"
-                    trackTintColor="blue"
-                    progress={0.7}
-                /> : null}
 
-                <ImageBackground borderRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
+                <ImageBackground borderBottomLeftRadius={20} borderBottomRightRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
                     <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
                         <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
                         <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
@@ -111,14 +119,16 @@ function SwapImageDetail(props) {
         <View style={{ backgroundColor: 'white', flex: 1 }} >
             <Carousel
                 ref={(c) => { _carousel = c; }}
-                data={props.route.params.data}
+                data={data}
                 renderItem={renderItem}
                 sliderWidth={screenWidth}
                 itemWidth={screenWidth}
                 layout={'default'}
                 loop={true}
                 autoplay={true}
-                autoplayInterval={5000}
+                autoplayInterval={slideDuration}
+
+
             />
         </View>
     );
@@ -136,12 +146,8 @@ const styles = StyleSheet.create({
     },
     progressBar: {
         flexDirection: 'row',
-        height: 20,
+        height: 4,
         width: '100%',
-        backgroundColor: 'white',
-        borderColor: '#000',
-        borderWidth: 2,
-        borderRadius: 5
     }
 });
 
