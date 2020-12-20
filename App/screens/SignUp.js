@@ -4,7 +4,72 @@ import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import colors from '../config/colors'
 
+import * as Google from 'expo-google-app-auth';
+import firebase from "firebase"
+
+import { firebaseConfig } from "../config/firebaseConfig"
+if (firebase.apps.length === 0) {
+    firebase.initializeApp(firebaseConfig)
+}
+
+
 function SignUp({ navigation }) {
+
+    const isUserEqual = (googleUser, firebaseUser) => {
+        if (firebaseUser) {
+            var providerData = firebaseUser.providerData;
+            for (var i = 0; i < providerData.length; i++) {
+                if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+                    providerData[i].uid === googleUser.getBasicProfile().getId()) {
+                    // We don't need to reauth the Firebase connection.
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    const signOut = () => {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+        }).catch(function (error) {
+            // An error happened.
+        });
+        NativeModules.DevSettings.reload();
+    }
+
+    const signInWithGoogleAsync = async () => {
+        try {
+            firebase.auth().onAuthStateChanged(async (user) => {
+                // console.log("loadingScreen", user)
+                if (user) {
+                    console.log("aleady logged in")
+                } else {
+                    const result = await Google.logInAsync({
+                        behaviour: 'web',
+                        androidClientId: '153377214336-9abl62sr7dt0tnciejc59pn284665c8j.apps.googleusercontent.com',
+                        iosClientId: '153377214336-f3jbmhlh3jq69f9rcmmmi7sa8t8of77l.apps.googleusercontent.com',
+                        scopes: ['profile', 'email'],
+                    });
+
+                    // help for client ID https://docs.expo.io/versions/latest/sdk/google/
+
+                    console.log(result)
+                    if (result.type === 'success') {
+                        return result.accessToken;
+                    } else {
+                        return { cancelled: true };
+                    }
+                }
+            })
+
+
+        } catch (e) {
+            console.log(e)
+            return { error: true };
+        }
+
+    }
     return (
         <View style={styles.container}>
             <StatusBar style="auto" backgroundColor='white' />
@@ -66,7 +131,7 @@ function SignUp({ navigation }) {
 
                 <View style={{ flexDirection: 'row', marginTop: RFPercentage(2), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                     <Image resizeMode="cover" style={{ maxHeight: 30, maxWidth: 30 }} source={require("../../assets/googleIcon.png")} />
-                    <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }} >
+                    <TouchableOpacity onPress={() => signInWithGoogleAsync()} style={{ alignItems: 'center', justifyContent: 'center' }} >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign in with Google</Text>
                     </TouchableOpacity>
                 </View>
