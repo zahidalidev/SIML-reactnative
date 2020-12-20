@@ -57,7 +57,7 @@ function Contact(props) {
                     <ContactPicker
                         selectedItem={selectedValue}
                         setSelectedValue={(item) => setSelectedValue(item)}
-                        width="40%"
+                        width="20%"
                         numberOfColumns={1}
                         placeholder='ADD'
                         icon="plus"

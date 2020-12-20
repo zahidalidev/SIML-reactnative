@@ -37,20 +37,18 @@ function ContactPicker({ icon,
 
     return (
         <>
-            <TouchableWithoutFeedback onPress={() => handleContacts()} >
-                <LinearGradient colors={['transparent', 'rgba(219, 217, 217, 0.8)']} style={[styles.container, { width, marginLeft: "10%" }]} >
-                    <Text numberOfLines={1} style={[styles.text, { fontSize: RFPercentage(2.9), color: 'black' }]} >{selectedItem ? selectedItem.name : placeholder}</Text>
-
-                    <View style={{ borderWidth: 1, borderRadius: 50, marginLeft: 10 }} >
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }} >
+                <LinearGradient colors={['transparent', 'rgba(219, 217, 217, 0.8)']} style={[styles.container, { maxHeight: RFPercentage(10), maxWidth: width, minHeight: RFPercentage(10), minWidth: width, marginLeft: "10%", borderRadius: RFPercentage(10), alignItems: 'center', justifyContent: 'center' }]} >
+                    <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }} onPress={() => handleContacts()}>
                         <MaterialCommunityIcons
                             name={icon}
-                            size={RFPercentage(2.5)}
+                            size={RFPercentage(4)}
                             color='black'
                         />
-                    </View>
-
+                    </TouchableOpacity>
                 </LinearGradient>
-            </TouchableWithoutFeedback>
+                <Text numberOfLines={1} style={[styles.text, { marginLeft: RFPercentage(2), fontSize: RFPercentage(2), color: 'black' }]} >{selectedItem ? selectedItem.name : placeholder}</Text>
+            </View>
 
             <Modal
                 swipeToClose={false}
