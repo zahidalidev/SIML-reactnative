@@ -99,9 +99,10 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flex: 1,
         width: "90%",
+        backgroundColor: 'white',
     },
     subContainer: {
-        // backgroundColor: 'red',
+        backgroundColor: 'white',
         width: '100%',
         flex: 1,
         flexDirection: 'column',
