@@ -14,7 +14,7 @@ import SwapImage from './App/screens/SwapImage';
 import SwapImageDetail from './App/screens/SwapImageDetail';
 import Contact from './App/screens/Contact';
 import ProfileDetail from './App/screens/ProfileDetail';
-
+import InvitationList from './App/screens/InvitationList';
 
 
 const Stack = createDrawerNavigator();
@@ -26,7 +26,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="SignUp">
+          }} initialRouteName="InvitationList">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -38,6 +38,7 @@ export default function App() {
           <Stack.Screen name="Contact" component={Contact} />
           <Stack.Screen name="CreateProfile" component={CreateProfile} />
           <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
+          <Stack.Screen name="InvitationList" component={InvitationList} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
