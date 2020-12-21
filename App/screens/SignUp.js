@@ -15,20 +15,6 @@ if (firebase.apps.length === 0) {
 
 function SignUp({ navigation }) {
 
-    const isUserEqual = (googleUser, firebaseUser) => {
-        if (firebaseUser) {
-            var providerData = firebaseUser.providerData;
-            for (var i = 0; i < providerData.length; i++) {
-                if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
-                    providerData[i].uid === googleUser.getBasicProfile().getId()) {
-                    // We don't need to reauth the Firebase connection.
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     const signOut = () => {
         firebase.auth().signOut().then(function () {
             // Sign-out successful.
@@ -52,7 +38,6 @@ function SignUp({ navigation }) {
                         scopes: ['profile', 'email'],
                     });
 
-                    // help for client ID https://docs.expo.io/versions/latest/sdk/google/
 
                     console.log(result)
                     if (result.type === 'success') {
