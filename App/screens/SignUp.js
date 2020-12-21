@@ -1,12 +1,12 @@
-import React from 'react';
-import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Button, Image, NativeModules, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import colors from '../config/colors'
-
+import * as Facebook from 'expo-facebook';
 import * as Google from 'expo-google-app-auth';
 import firebase from "firebase"
 
+import colors from '../config/colors'
 import { firebaseConfig } from "../config/firebaseConfig"
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig)
@@ -14,6 +14,45 @@ if (firebase.apps.length === 0) {
 
 
 function SignUp({ navigation }) {
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user != null) {
+                console.log(user)
+            }
+        })
+    }, [])
+
+    const signInWithFacebook = async () => {
+        try {
+            await Facebook.initializeAsync({
+                appId: '406659957343417',
+            });
+            const {
+                type,
+                token,
+                expirationDate,
+                permissions,
+                declinedPermissions,
+            } = await Facebook.logInWithReadPermissionsAsync({
+                permissions: ['public_profile'],
+            });
+
+            if (type === 'success') {
+                // Get the user's name using Facebook's Graph API
+                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+                const credential = firebase.auth.FacebookAuthProvider.credential(token)
+
+                const body = await response.json();
+                console.log('Logged in!', body);
+                console.log('credential', credential);
+            } else {
+                // type === 'cancel'
+            }
+        } catch ({ message }) {
+            alert(`Facebook Login Error: ${message}`);
+        }
+    }
 
     const signOut = () => {
         firebase.auth().signOut().then(function () {
@@ -108,7 +147,7 @@ function SignUp({ navigation }) {
                             backgroundColor: '#1f79e0',
                             width: '100%', alignItems: 'center', justifyContent: 'center'
                         }}
-                        onPress={() => console.log("sign in")}
+                        onPress={() => signInWithFacebook()}
                     >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: 'white', padding: 10, fontSize: RFPercentage(2) }} >sign up with Facebook</Text>
                     </TouchableOpacity>
@@ -116,7 +155,7 @@ function SignUp({ navigation }) {
 
                 <View style={{ flexDirection: 'row', marginTop: RFPercentage(2), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                     <Image resizeMode="cover" style={{ maxHeight: 30, maxWidth: 30 }} source={require("../../assets/googleIcon.png")} />
-                    <TouchableOpacity onPress={() => signInWithGoogleAsync()} style={{ alignItems: 'center', justifyContent: 'center' }} >
+                    <TouchableOpacity onPress={() => signOut()} style={{ alignItems: 'center', justifyContent: 'center' }} >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign in with Google</Text>
                     </TouchableOpacity>
                 </View>
