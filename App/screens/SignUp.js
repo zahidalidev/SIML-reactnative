@@ -155,7 +155,7 @@ function SignUp({ navigation }) {
 
                 <View style={{ flexDirection: 'row', marginTop: RFPercentage(2), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                     <Image resizeMode="cover" style={{ maxHeight: 30, maxWidth: 30 }} source={require("../../assets/googleIcon.png")} />
-                    <TouchableOpacity onPress={() => signOut()} style={{ alignItems: 'center', justifyContent: 'center' }} >
+                    <TouchableOpacity onPress={() => signInWithGoogleAsync()} style={{ alignItems: 'center', justifyContent: 'center' }} >
                         <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >sign in with Google</Text>
                     </TouchableOpacity>
                 </View>
