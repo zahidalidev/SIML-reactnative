@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Component, useState } from 'react';
 import { Button, Image, NativeModules, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import * as Facebook from 'expo-facebook';
 import * as Google from 'expo-google-app-auth';
 import firebase from "firebase"
+import { AnimatedModal } from "react-native-modal-animated";
 
 import colors from '../config/colors'
 import { firebaseConfig } from "../config/firebaseConfig"
+import { clockRunning } from 'react-native-reanimated';
 if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig)
 }
 
 
 function SignUp({ navigation }) {
+
+    const [modalVisible, setModelVisible] = useState(false)
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
@@ -44,6 +48,8 @@ function SignUp({ navigation }) {
                 const credential = firebase.auth.FacebookAuthProvider.credential(token)
 
                 const body = await response.json();
+                handleModel()
+
                 console.log('Logged in!', body);
                 console.log('credential', credential);
             } else {
@@ -63,6 +69,14 @@ function SignUp({ navigation }) {
         NativeModules.DevSettings.reload();
     }
 
+    const handleModel = () => {
+        setModelVisible(true)
+        setTimeout(function () {
+            setModelVisible(false)
+            navigation.navigate('ProfileDetail')
+        }, 2000);
+    }
+
     const signInWithGoogleAsync = async () => {
         try {
             firebase.auth().onAuthStateChanged(async (user) => {
@@ -78,8 +92,10 @@ function SignUp({ navigation }) {
                     });
 
 
-                    console.log(result)
                     if (result.type === 'success') {
+                        console.log('logged in', result)
+                        handleModel()
+
                         return result.accessToken;
                     } else {
                         return { cancelled: true };
@@ -98,6 +114,33 @@ function SignUp({ navigation }) {
         <View style={styles.container}>
             <StatusBar style="auto" backgroundColor='white' />
             {/* <ScrollView style={styles.scrollContainer} > */}
+
+            {/* animated model for successful loggin */}
+            <AnimatedModal
+                visible={modalVisible}
+                onBackdropPress={() => {
+                    setModelVisible(false)
+                }}
+                animationType="flipAndScale"
+                duration={700}
+            >
+                <View style={{
+                    width: '70%',
+                    height: RFPercentage(9),
+                    borderColor: colors.primary,
+                    borderWidth: 3,
+                    backgroundColor: '#fff',
+                    borderRadius: RFPercentage(2),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <Text style={{ color: colors.primary, fontFamily: 'serif', fontSize: RFPercentage(4) }} >
+                        Login Successful
+                    </Text>
+                </View>
+            </AnimatedModal>
+
+
             <View style={styles.subContainer} >
                 <View style={{ alignItems: 'center', justifyContent: 'center' }} >
                     <Text style={{ letterSpacing: RFPercentage(1.2), fontSize: RFPercentage(9), fontFamily: Platform.OS === 'ios' ? 'Verdana' : 'serif', color: colors.primary }} >SIML</Text>

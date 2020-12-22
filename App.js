@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -16,6 +16,7 @@ import Contact from './App/screens/Contact';
 import ProfileDetail from './App/screens/ProfileDetail';
 import InvitationList from './App/screens/InvitationList';
 
+LogBox.ignoreAllLogs()
 
 const Stack = createDrawerNavigator();
 
@@ -26,7 +27,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="InvitationList">
+          }} initialRouteName="SignUp">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
