@@ -73,7 +73,10 @@ function SignUp({ navigation }) {
         setModelVisible(true)
         setTimeout(function () {
             setModelVisible(false)
-            navigation.navigate('ProfileDetail')
+
+            setTimeout(function () {
+                navigation.navigate('ProfileDetail')
+            }, 600);
         }, 2000);
     }
 
@@ -122,7 +125,7 @@ function SignUp({ navigation }) {
                     setModelVisible(false)
                 }}
                 animationType="flipAndScale"
-                duration={700}
+                duration={800}
             >
                 <View style={{
                     width: '70%',

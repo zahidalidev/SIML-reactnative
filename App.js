@@ -15,6 +15,7 @@ import SwapImageDetail from './App/screens/SwapImageDetail';
 import Contact from './App/screens/Contact';
 import ProfileDetail from './App/screens/ProfileDetail';
 import InvitationList from './App/screens/InvitationList';
+import Search from './App/screens/Search';
 
 LogBox.ignoreAllLogs()
 
@@ -27,7 +28,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="SignUp">
+          }} initialRouteName="Search">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -40,6 +41,7 @@ export default function App() {
           <Stack.Screen name="CreateProfile" component={CreateProfile} />
           <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
           <Stack.Screen name="InvitationList" component={InvitationList} />
+          <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
