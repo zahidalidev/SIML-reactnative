@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
@@ -7,113 +7,44 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 import { useState } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import { MaterialCommunityIcons } from "@expo/vector-icons"
+import * as Contacts from 'expo-contacts';
 
 import colors from '../config/colors'
 
 function ContactsPage(props) {
+    const [contacts, setContacts] = useState([])
 
-    const [data, setData] = useState([
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-        {
-            picture: "https://fsb.zobj.net/crop.php?r=8VqZNpYGs7fYA4VBb0p5wj7Ydq0zB0kxCCauMieJ4__6N4j15g-rNv9481897flk0ka4zpapv4_I2T9C-_aHNRMv8AGSPy2MhuN9FrNswL2qerzW9R5XRZhgbZHUByFiCS1bAS-xepBalRARAdViBgzdh1JloinsF1-kiodaYu_2OA93ZqAOUsIgTJE",
-            name: "Richard Foster",
-            message: "This is message this is a message this is a message this is a messag",
-            date: "02/12/2020",
-            selected: false
-        },
-    ])
+    const handleContacts = async () => {
+        const { status } = await Contacts.requestPermissionsAsync();
+        if (status === 'granted') {
+            const { data } = await Contacts.getContactsAsync({
+                fields: [Contacts.Fields.Emails],
+            });
+
+            if (data.length > 0) {
+                const contacts = data;
+                contacts.map((contact, i) => {
+                    contacts[i].selected = false;
+                })
+                setContacts(contacts);
+            }
+        }
+    }
+
+    useEffect(() => {
+        console.log("HI")
+        handleContacts()
+    }, [])
 
     const [checkBox, setCheckBox] = useState(false)
     const [render, setRender] = useState(false)
 
     const handleSelectedItem = (i) => {
-        const data2 = data;
-        data2[i].selected = !data2[i].selected
-        setData(data2)
+        // const contacts2 = contacts;
+        contacts[i].selected = !contacts[i].selected
+        setContacts(contacts)
         setRender(!render)
+        // console.log(contacts[i])
     }
 
 
@@ -144,10 +75,24 @@ function ContactsPage(props) {
 
             <ScrollView style={styles.scrollContainer} >
                 <View style={styles.subContainer} >
-                    {data.map((item, i) => (
-                        <TouchableOpacity style={{ padding: RFPercentage(2.5), paddingLeft: 0, width: "90%", flex: 1, backgroundColor: "white", borderBottomColor: 'grey', borderBottomWidth: 0.3, maxHeight: RFPercentage(2), justifyContent: 'center', alignItems: 'flex-start' }} >
-                            <Text style={{ fontSize: RFPercentage(2.1), color: "black" }} >Groups</Text>
-                        </TouchableOpacity>
+                    {contacts.map((contact, i) => (
+                        <View key={i + 1} style={{ flex: 1, backgroundColor: "white", borderBottomColor: 'grey', borderBottomWidth: 0.3, maxHeight: RFPercentage(6), width: "90%", justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'row' }} >
+                            {checkBox ?
+                                <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }} >
+                                    <CheckBox
+                                        disabled={false}
+                                        value={contact.selected}
+                                        boxType="circle"
+                                        tintColor="red"
+                                        onValueChange={() => handleSelectedItem(i)}
+                                        style={{ marginTop: RFPercentage(1.1) }}
+                                    />
+                                </View>
+                                : null}
+                            <TouchableOpacity onLongPress={() => setCheckBox(true)} style={{ padding: RFPercentage(2), paddingLeft: 0, flex: 1 }} >
+                                <Text style={{ fontSize: RFPercentage(2.1), color: "black" }} >{contact.name}</Text>
+                            </TouchableOpacity>
+                        </View>
                     ))}
                 </View>
             </ScrollView>

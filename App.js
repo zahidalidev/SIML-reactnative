@@ -17,6 +17,8 @@ import ProfileDetail from './App/screens/ProfileDetail';
 import InvitationList from './App/screens/InvitationList';
 import Search from './App/screens/Search';
 import ContactsPage from './App/screens/ContactsPage';
+import UserProfile from './App/screens/UserProfile';
+import Settings from './App/screens/Settings';
 
 LogBox.ignoreAllLogs()
 
@@ -29,7 +31,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="ContactsPage">
+          }} initialRouteName="UserProfile">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -44,6 +46,8 @@ export default function App() {
           <Stack.Screen name="InvitationList" component={InvitationList} />
           <Stack.Screen name="ContactsPage" component={ContactsPage} />
           <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="UserProfile" component={UserProfile} />
+          <Stack.Screen name="Settings" component={Settings} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
