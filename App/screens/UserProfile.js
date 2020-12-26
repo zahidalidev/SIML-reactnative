@@ -53,7 +53,6 @@ function UserProfile(props) {
                     </View>
 
 
-                    {/*Custom Drop downs components */}
                     <View style={{ marginTop: RFPercentage(8), width: "90%", flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }} >
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
                             <TouchableOpacity style={{ marginRight: RFPercentage(2.5), backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >

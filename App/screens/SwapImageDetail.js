@@ -92,23 +92,38 @@ function SwapImageDetail(props) {
     const renderItem = ({ item, index }) => {
         return (
             <View style={{ marginLeft: '2.5%', marginTop: RFPercentage(5), width: "95%", justifyContent: "center", alignItems: 'center' }} >
+
+                <View style={{ marginBottom: -RFPercentage(2), width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <TouchableOpacity onPress={() => console.log('back')} style={{ alignItems: 'flex-start', justifyContent: 'flex-start' }} >
+                        <MaterialCommunityIcons size={RFPercentage(6)} color={colors.darkGrey} name="chevron-left" />
+                    </TouchableOpacity>
+                </View>
+
+                <View style={{ marginBottom: RFPercentage(1), flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <Text style={{ fontSize: RFPercentage(2.2), color: colors.primary }} >SIML</Text>
+                </View>
+
                 <View style={styles.progressBar}>
                     <Animated.View style={[StyleSheet.absoluteFill], { backgroundColor: colors.primary, width }} />
                 </View>
 
-                <ImageBackground borderBottomLeftRadius={20} borderBottomRightRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ flexDirection: 'row', width: '100%', height: '97%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
-                    <View style={{ flexDirection: 'column', marginBottom: RFPercentage(6), marginLeft: RFPercentage(2), flex: 2, justifyContent: 'flex-end', alignItems: 'flex-start' }} >
-                        <Text style={{ fontWeight: 'bold', color: 'white', fontSize: RFPercentage(3) }} >Lorem ipsum</Text>
-                        <Text style={{ color: 'white', fontSize: RFPercentage(1.6) }} >Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</Text>
-                    </View>
-                </ImageBackground>
+                <View style={{ maxHeight: '92.5%' }} activeOpacity={0.9} onPress={() => navigation.navigate('SwapImageDetail', { data: moreDetaildata })} >
+                    <ImageBackground borderBottomLeftRadius={20} borderBottomRightRadius={20} resizeMethod="resize" source={{ uri: item.image }} style={{ marginLeft: "1.5%", flexDirection: 'row', width: '97%', height: '96%', marginBottom: Platform.OS === 'ios' ? -RFPercentage(2.7) : RFPercentage(0) }} >
+                        <View style={{ flexDirection: 'column', marginBottom: RFPercentage(5), flex: 1, justifyContent: 'flex-end', alignItems: 'center' }} >
+                            <Text style={{ color: 'white', fontSize: RFPercentage(2) }} >Lorem ipsum, or lipsum as it.</Text>
+                        </View>
+                    </ImageBackground>
+
+                </View>
+
                 <View style={{ width: '70%', flexDirection: 'row', backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'flex-end' }} >
-                    <TouchableOpacity style={{ backgroundColor: 'white', flex: 1, alignItems: 'center' }} >
-                        <MaterialCommunityIcons onPress={() => handleNextImage(item)} color="grey" size={40} name='close' />
+                    <TouchableOpacity style={{ marginRight: RFPercentage(8), backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
+                        <Image resizeMode="contain" style={{ maxWidth: RFPercentage(3.5), maxHeight: RFPercentage(3.5) }} source={require("../../assets/X.png")} />
                     </TouchableOpacity>
-                    <View style={{ backgroundColor: 'white', flex: 1, alignItems: 'center' }} >
-                        <MaterialCommunityIcons onPress={() => handleLike(item)} color="red" size={40} name={item.liked ? 'heart' : 'heart-outline'} />
-                    </View>
+
+                    <TouchableOpacity style={{ backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
+                        <Image resizeMode="contain" style={{ maxWidth: RFPercentage(3.5), maxHeight: RFPercentage(3.5) }} source={require("../../assets/tick.png")} />
+                    </TouchableOpacity>
                 </View>
 
             </View >
@@ -147,7 +162,7 @@ const styles = StyleSheet.create({
     progressBar: {
         flexDirection: 'row',
         height: 4,
-        width: '100%',
+        width: '94%',
     }
 });
 
