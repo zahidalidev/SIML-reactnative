@@ -17,13 +17,14 @@ import TimePicker from '../components/TimePicker';
 
 function Search(props) {
 
-    const [selectedValue, setSelectedValue] = useState(null);
+    const [value, setValue] = useState("");
     const [selectedValue2, setSelectedValue2] = useState(null);
 
     const [feildBackColor4, setFeildBackColor4] = useState('white')
     const [borderWidth4, setBborderWidth4] = useState(1.4)
     const [topMargin, setMargin] = useState(-RFPercentage(4))
 
+    const [showSuggestions, setShowSuggestions] = useState(false)
 
     const [recentearches, setRecentSearches] = useState([
         {
@@ -40,7 +41,21 @@ function Search(props) {
         },
     ])
 
-    // console.log(selectedValue)
+    const [suggestions, setSuggestions] = useState([
+        {
+            name: 'this is suggestion location'
+        },
+        {
+            name: 'this is suggestion location'
+        },
+        {
+            name: 'this is suggestion location'
+        },
+        {
+            name: 'this is suggestion location'
+        },
+    ])
+
     return (
         <View style={styles.container}>
             <StatusBar style="auto" backgroundColor='#f6f6f6' />
@@ -62,46 +77,71 @@ function Search(props) {
 
                 <View style={{ width: '100%', flex: 1, backgroundColor: feildBackColor4, borderRightWidth: borderWidth4, borderBottomWidth: borderWidth4, borderColor: colors.darkGrey, alignItems: 'flex-start', justifyContent: 'center' }} >
                     <TextInput
+                        value={value}
+                        onChangeText={(va) => setValue(va)}
                         onFocus={() => {
                             setFeildBackColor4(colors.lightPrimary)
                             setBborderWidth4(0)
                             setMargin(Platform.OS === 'ios' ? -RFPercentage(22) : RFPercentage(0))
+                            setShowSuggestions(true)
                         }}
                         onEndEditing={() => {
                             setFeildBackColor4('white')
                             setBborderWidth4(1.4)
                             setMargin(-RFPercentage(4))
+                            setShowSuggestions(false)
                         }}
                         placeholder="location"
                         style={{ padding: 6, fontSize: RFPercentage(2.5) }}
                     />
                 </ View>
             </View>
-            {/* </View> */}
+
             <View style={{ width: "100%", flex: 10, marginTop: topMargin }} >
-
-
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContainer} >
-                    <View style={{ maxHeight: RFPercentage(6), flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(2), width: "100%", flex: 1, backgroundColor: "white" }} >
-                        <Entypo name="paper-plane" color="#4081ec" size={RFPercentage(2.4)} />
-                        <TouchableOpacity style={{ marginLeft: RFPercentage(3), flex: 1, alignItems: 'flex-start' }} >
-                            <Text style={{ fontWeight: '600', fontSize: RFPercentage(2.2), color: '#4081ec' }} >Current Locatons</Text>
-                        </TouchableOpacity>
-                    </View>
 
-                    <View style={{ marginTop: RFPercentage(1), backgroundColor: "#e5e5e5", flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(1.4), width: "100%", flex: 1 }} >
-                        <Text style={{ fontWeight: '600', fontSize: RFPercentage(2), color: '#6e6d72' }} >Recent Searches</Text>
-                    </View>
+                    {showSuggestions ? null :
+                        <>
+                            <View style={{ maxHeight: RFPercentage(6), flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(2), width: "100%", flex: 1, backgroundColor: "white" }} >
+                                <Entypo name="paper-plane" color="#4081ec" size={RFPercentage(2.4)} />
+                                <TouchableOpacity style={{ marginLeft: RFPercentage(3), flex: 1, alignItems: 'flex-start' }} >
+                                    <Text style={{ fontWeight: '600', fontSize: RFPercentage(2.2), color: '#4081ec' }} >Current Locatons</Text>
+                                </TouchableOpacity>
+                            </View>
 
-                    {recentearches.map((search, i) => (
-                        <View key={i} style={{ maxHeight: RFPercentage(6), flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(2), width: "100%", flex: 1, backgroundColor: "white" }} >
-                            <Octicons name="location" size={RFPercentage(2.4)} />
-                            <TouchableOpacity style={{ marginLeft: RFPercentage(3), flex: 1, alignItems: 'flex-start' }} >
-                                <Text style={{ fontWeight: '600', fontSize: RFPercentage(2.2), color: 'black' }} >{search.name}</Text>
-                            </TouchableOpacity>
-                        </View>
+                            <View style={{ marginTop: RFPercentage(1), backgroundColor: "#e5e5e5", flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(1.4), width: "100%", flex: 1 }} >
+                                <Text style={{ fontWeight: '600', fontSize: RFPercentage(2), color: '#6e6d72' }} >Recent Searches</Text>
+                            </View>
 
-                    ))}
+                            {recentearches.map((search, i) => (
+                                <View key={i} style={{ maxHeight: RFPercentage(6), flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(2), width: "100%", flex: 1, backgroundColor: "white" }} >
+                                    <Octicons name="location" size={RFPercentage(2.4)} />
+                                    <TouchableOpacity style={{ marginLeft: RFPercentage(3), flex: 1, alignItems: 'flex-start' }} >
+                                        <Text style={{ fontWeight: '600', fontSize: RFPercentage(2.2), color: 'black' }} >{search.name}</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                            ))}
+                        </>
+                    }
+
+                    {!showSuggestions ? null :
+                        <>
+                            <View style={{ marginTop: RFPercentage(1), backgroundColor: "#e5e5e5", flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(1.4), width: "100%", flex: 1 }} >
+                                <Text style={{ fontWeight: '600', fontSize: RFPercentage(2), color: '#6e6d72' }} >Location</Text>
+                            </View>
+
+                            {suggestions.map((search, i) => (
+                                <View key={i} style={{ maxHeight: RFPercentage(6), flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'flex-start', padding: RFPercentage(2), width: "100%", flex: 1, backgroundColor: "white" }} >
+                                    <Octicons name="location" size={RFPercentage(2.4)} />
+                                    <TouchableOpacity style={{ marginLeft: RFPercentage(3), flex: 1, alignItems: 'flex-start' }} >
+                                        <Text style={{ fontWeight: '600', fontSize: RFPercentage(2.2), color: 'black' }} >{search.name}</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                            ))}
+                        </>
+                    }
                 </ScrollView>
             </View>
         </View >
