@@ -15,7 +15,7 @@ import MainPicker from '../components/MainPicker';
 import { color } from 'react-native-reanimated';
 
 function UserProfile(props) {
-    const [selectedImage, setImage] = useState(null)
+    const [selectedImage, setImage] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxxaLKZOlv4hNd4MW8kY-WbKixRDSwQ3b_rw&usqp=CAU")
 
 
     const handleImage = async () => {
@@ -44,7 +44,7 @@ function UserProfile(props) {
                         <Text style={{ fontSize: RFPercentage(2.2), color: colors.primary }} >SIML</Text>
                     </View>
                     {/* profile picture */}
-                    <ImageBackground resizeMode="cover" borderRadius={RFPercentage(15)} source={selectedImage} style={{ marginTop: RFPercentage(10), borderRadius: RFPercentage(15), width: RFPercentage(30), height: RFPercentage(30), borderColor: colors.grey, borderWidth: 1, flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                    <ImageBackground resizeMode="cover" borderRadius={RFPercentage(15)} source={{ uri: selectedImage }} style={{ marginTop: RFPercentage(10), borderRadius: RFPercentage(15), width: RFPercentage(30), height: RFPercentage(30), borderColor: colors.grey, borderWidth: 1, flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
                     </ImageBackground>
 
                     <View style={{ flex: 1, width: "85%", marginTop: RFPercentage(6), flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>

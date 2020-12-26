@@ -32,7 +32,6 @@ function ContactsPage(props) {
     }
 
     useEffect(() => {
-        console.log("HI")
         handleContacts()
     }, [])
 
