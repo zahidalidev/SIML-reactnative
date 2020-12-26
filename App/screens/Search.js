@@ -75,6 +75,7 @@ function Search(props) {
                     <Octicons name="location" size={RFPercentage(2.7)} />
                 </View>
 
+
                 <View style={{ width: '100%', flex: 1, backgroundColor: feildBackColor4, borderRightWidth: borderWidth4, borderBottomWidth: borderWidth4, borderColor: colors.darkGrey, alignItems: 'flex-start', justifyContent: 'center' }} >
                     <TextInput
                         value={value}
