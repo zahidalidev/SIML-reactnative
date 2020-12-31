@@ -13,6 +13,7 @@ import colors from '../config/colors'
 import AppPicker from '../components/AppPicker';
 import MainPicker from '../components/MainPicker';
 import { color } from 'react-native-reanimated';
+import { Badge } from 'react-native-paper';
 
 function UserProfile(props) {
     const [selectedImage, setImage] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxxaLKZOlv4hNd4MW8kY-WbKixRDSwQ3b_rw&usqp=CAU")
@@ -40,21 +41,21 @@ function UserProfile(props) {
 
 
 
-                    <View style={{ marginTop: RFPercentage(5), flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <View style={{ backgroundColor: 'white', marginTop: RFPercentage(5), flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'center' }}>
                         <Text style={{ fontSize: RFPercentage(2.2), color: colors.primary }} >SIML</Text>
                     </View>
                     {/* profile picture */}
                     <ImageBackground resizeMode="cover" borderRadius={RFPercentage(15)} source={{ uri: selectedImage }} style={{ marginTop: RFPercentage(10), borderRadius: RFPercentage(15), width: RFPercentage(30), height: RFPercentage(30), borderColor: colors.grey, borderWidth: 1, flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
                     </ImageBackground>
 
-                    <View style={{ flex: 1, width: "85%", marginTop: RFPercentage(6), flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+                    <View style={{ backgroundColor: 'white', flex: 1, width: "85%", marginTop: RFPercentage(6), flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
                         <Text style={{ fontSize: RFPercentage(2.2), color: colors.primary }} >User's name</Text>
                         <Text style={{ fontSize: RFPercentage(2.2), color: colors.primary }} >Location</Text>
                     </View>
 
 
-                    <View style={{ marginTop: RFPercentage(8), width: "90%", flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }} >
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+                    <View style={{ backgroundColor: 'white', marginTop: RFPercentage(8), width: "90%", flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }} >
+                        <View style={{ backgroundColor: 'white', flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
                             <TouchableOpacity style={{ marginRight: RFPercentage(2.5), backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
                                 <Image resizeMode="cover" source={require("../../assets/GroupProfile_1.png")} />
                             </TouchableOpacity>
@@ -63,7 +64,8 @@ function UserProfile(props) {
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ marginRight: RFPercentage(2.5), backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
-                                <Image resizeMode="cover" source={require("../../assets/ProfileGroup_2.png")} />
+                                <Badge style={{ marginBottom: -RFPercentage(1) }} status="error" size={RFPercentage(2.4)} >2</Badge>
+                                <Image style={{ marginBottom: RFPercentage(1) }} resizeMode="cover" source={require("../../assets/ProfileGroup_2.png")} />
                             </TouchableOpacity>
 
                             <TouchableOpacity style={{ backgroundColor: "#EBE8E8", width: RFPercentage(8), height: RFPercentage(8), maxWidth: RFPercentage(8), flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >

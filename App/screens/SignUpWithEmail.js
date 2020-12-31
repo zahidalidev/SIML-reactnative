@@ -98,7 +98,7 @@ function SignUpWithEmail(props) {
                             />
                         </ View>
                     </View>
-                    <View style={{ elevation: 1, marginTop: RFPercentage(10), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
+                    <View style={{ bottom: Platform.OS === 'ios' ? RFPercentage(8) : RFPercentage(5), elevation: 1, marginTop: RFPercentage(10), width: '100%', alignItems: 'center', justifyContent: 'center' }} >
                         <TouchableOpacity
                             style={{
                                 // backgroundColor: colors.,
@@ -119,7 +119,7 @@ function SignUpWithEmail(props) {
 
 
             </View>
-            <View style={{ marginBottom: RFPercentage(3), flexDirection: 'column', marginTop: Platform.OS === 'ios' ? RFPercentage(20) : RFPercentage(15), width: '90%', alignItems: 'center', justifyContent: 'center' }} >
+            <View style={{ marginBottom: RFPercentage(3), flexDirection: 'column', width: '90%', alignItems: 'center', justifyContent: 'center' }} >
                 <Text style={{ marginBottom: -RFPercentage(1.6), letterSpacing: RFPercentage(0.2), color: '#686767', padding: 10, fontSize: RFPercentage(2) }} >by clicking sign up you are agree to</Text>
                 <View style={{ flexDirection: 'row' }} >
                     <Text style={{ letterSpacing: RFPercentage(0.3), color: '#686767', fontSize: RFPercentage(2) }} >SIML's</Text>

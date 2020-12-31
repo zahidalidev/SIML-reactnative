@@ -20,6 +20,7 @@ function Seat(props) {
     const [date, setDate] = useState(new Date(1598051730000));
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+
     const [sizes, setSizes] = useState([
         { name: 1 },
         { name: 2 },
@@ -45,6 +46,7 @@ function Seat(props) {
         setShow(true);
         setMode(currentMode);
     };
+
     const showDatepicker = () => {
         showMode('date');
     };
@@ -55,20 +57,22 @@ function Seat(props) {
     return (
         <View style={styles.container}>
             <Modal
+                position="bottom"
                 swipeToClose={false}
                 style={{
+                    height: Platform.OS === 'ios' ? "70%" : "50%",
                     backgroundColor: 'white',
                     justifyContent: 'center', alignItems: 'center'
                 }} isOpen={modalVisible} onClosed={() => setModalVisible(false)} >
 
                 <View style={{ marginBottom: RFPercentage(5), flexDirection: 'row', width: "90%", alignItems: "flex-end" }} showsVerticalScrollIndicator={true} >
                     <View style={{ flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-end" }} >
-                        <Text style={{ fontSize: RFPercentage(2.4), fontWeight: "bold" }} >Party size</Text>
+                        <Text style={{ marginBottom: RFPercentage(2), fontSize: RFPercentage(2.4), fontWeight: "bold" }} >Party size</Text>
                         <FlatList
                             horizontal={true}
                             data={sizes}
                             renderItem={() =>
-                                <View style={{ marginRight: RFPercentage(1), borderWidth: 1, borderRadius: RFPercentage(2), justifyContent: "center", alignItems: "center", width: RFPercentage(4), height: RFPercentage(4) }} >
+                                <View style={{ marginRight: RFPercentage(1), borderWidth: 1, borderRadius: RFPercentage(2.5), justifyContent: "center", alignItems: "center", width: RFPercentage(5), height: RFPercentage(5) }} >
                                     <Text style={{ fontSize: RFPercentage(2.4), fontWeight: "bold" }} >1</Text>
                                 </View>
                             }
@@ -90,6 +94,7 @@ function Seat(props) {
                         >
                         {show && (
                             <DateTimePicker
+                                style={{ width: 320, backgroundColor: "white" }}
                                 testID="dateTimePicker"
                                 value={date}
                                 mode={mode}
