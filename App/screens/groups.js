@@ -10,9 +10,6 @@ import colors from '../config/colors'
 
 function groups(props) {
 
-    const [groupImage, setGroupImage] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxxaLKZOlv4hNd4MW8kY-WbKixRDSwQ3b_rw&usqp=CAU")
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
     const [groups, setgroups] = useState([
         {
             id: 1
@@ -48,11 +45,6 @@ function groups(props) {
             id: 11
         },
     ])
-
-    const [friends_1, setfriends_1] = useState([])
-    const [friends_2, setfriends_2] = useState([])
-    const [render, setRender] = useState(false)
-
 
     return (
         <View style={styles.container}>
