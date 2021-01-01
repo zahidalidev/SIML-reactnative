@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Switch, Platform, FlatList } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import Constants from 'expo-constants'
 import { MaterialCommunityIcons } from "@expo/vector-icons"
-import { LinearGradient } from 'expo-linear-gradient';
-import { Picker } from "@react-native-community/picker"
+import { ImageBackground } from 'react-native';
 
 import colors from '../config/colors'
-import AppPicker from '../components/AppPicker';
-import ContactPicker from '../components/ContactPicker';
-import TimePicker from '../components/TimePicker';
-import Modal from 'react-native-modalbox';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { ImageBackground } from 'react-native';
 
 function InviteFriends(props) {
 
