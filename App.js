@@ -21,6 +21,7 @@ import UserProfile from './App/screens/UserProfile';
 import Settings from './App/screens/Settings';
 import InviteFriends from './App/screens/InviteFriends';
 import CreateGroupNameImage from './App/screens/CreateGroupNameImage';
+import groups from './App/screens/groups';
 
 LogBox.ignoreAllLogs()
 
@@ -33,7 +34,7 @@ export default function App() {
         <Stack.Navigator
           drawerStyle={{
             width: "0%"
-          }} initialRouteName="CreateGroupNameImage">
+          }} initialRouteName="groups">
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="Signin" component={Signin} />
           <Stack.Screen name="Login" component={Login} />
@@ -52,6 +53,7 @@ export default function App() {
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="InviteFriends" component={InviteFriends} />
           <Stack.Screen name="CreateGroupNameImage" component={CreateGroupNameImage} />
+          <Stack.Screen name="groups" component={groups} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
